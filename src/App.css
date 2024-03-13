@@ -1,65 +1,62 @@
-.container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+.background-container {
+    position: fixed; /* Sayfanın her zaman tam boyutunda kalmasını sağlar */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Sayfa boyutunu aşan kısmı gizler */
+  }
+
+.hero{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
 }
 
-.hero {
- 
-  object-fit: cover;
-  z-index: -1;
-}
+.container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
 
 .logo {
-  position: absolute;
-  top: 20px; /* Sayfanın üst kısmına göre ayarlayın */
-  z-index: 1; /* Heronun üstünde olmasını sağlar */
-}
-
-.baslik {
-  font-family: "Satisfy", cursive;
-  color: #ffffff;
-  margin-top: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1; /* Heronun üstünde olmasını sağlar */
-}
-
-.baslik2 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 24px;
-  color: #ffffff;
-  margin-top: 10px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1; /* Heronun üstünde olmasını sağlar */
-}
-
-.button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #ffc107;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 20px;
-  font-size: 20px;
-  transition: background-color 0.3s ease;
-  margin-top: 20px; /* Button ile alt kısmın arasındaki boşluk */
-  position: absolute;
-  top: 70%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1; /* Heronun üstünde olmasını sağlar */
-}
-
-.button:hover {
-  background-color: #ffca28;
-}
+    margin-top: 20px; /* Gerekirse logo ile başlık arasına boşluk ekleyin */
+  }
+  
+  .baslik {
+    font-family: "Satisfy", cursive;
+    color: #FDC913;
+    margin-top: 20px;
+  }
+  
+  .baslik2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 40px;
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 10px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffc107;
+    color: black;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }

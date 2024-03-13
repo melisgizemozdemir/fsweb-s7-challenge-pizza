@@ -1,0 +1,65 @@
+.header {
+    border: 1px;
+    background-color: #CE2829;
+    padding: 2rem;
+  }
+  
+  .logo{
+
+    display: block;
+    margin: 0 auto;
+
+  }
+
+  .form-container {
+    width: 50%; /* Formun genişliğini belirleyin */
+    margin: 0 auto; /* Sayfaya ortala */
+    padding: 3rem; /* Sağ ve sol kenarlarda boşluk bırak */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .radio-dropdown-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+
+.adet-input {
+    display: flex;
+    align-items: center;
+}
+
+.adet-input button {
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color:#ffc107;
+}
+
+.adet-input input {
+    width: 40px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.fiyat-bilgisi{
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    margin-right: 10px;
+       
+}
+
+.adet-ozet-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .button:disabled {
+    background-color: #cccccc;}
+
+

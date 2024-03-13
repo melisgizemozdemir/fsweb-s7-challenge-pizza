@@ -1,44 +1,65 @@
-.anasayfa-container {
+.container {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.hero-banner {
-  width: 100%;
-  height: 400px; /* veya istediğiniz yükseklik */
-  background-image: url('hero-banner.jpg');
-  background-size: cover;
-  background-position: center;
+.hero {
+ 
+  object-fit: cover;
+  z-index: -1;
+}
+
+.logo {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 20px; /* Sayfanın üst kısmına göre ayarlayın */
+  z-index: 1; /* Heronun üstünde olmasını sağlar */
 }
 
-.overlay {
-  position: relative;
-  z-index: 1; /* içerik hero banner'ın üzerine gelsin */
+.baslik {
+  font-family: "Satisfy", cursive;
+  color: #ffffff;
+  margin-top: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1; /* Heronun üstünde olmasını sağlar */
 }
 
-.logo-container img {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 10px;
+.baslik2 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  color: #ffffff;
+  margin-top: 10px;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* Heronun üstünde olmasını sağlar */
 }
 
-.baslik-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.button-container {
-  text-align: center;
-}
-
-.sari-buton {
-  background-color: yellow;
-  color: black;
+.button {
+  display: inline-block;
   padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
+  background-color: #ffc107;
+  color: #ffffff;
   text-decoration: none;
+  border-radius: 20px;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Button ile alt kısmın arasındaki boşluk */
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1; /* Heronun üstünde olmasını sağlar */
+}
+
+.button:hover {
+  background-color: #ffca28;
 }

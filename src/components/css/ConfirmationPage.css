@@ -1,0 +1,26 @@
+
+.page-container{
+    width: 100vw; /* 100 viewport width */
+    height: 100vh; /* 100 viewport height */
+    background-color: #CE2829;;
+}
+
+
+
+.success-h1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    font-family: "Roboto Condensed", sans-serif;
+    
+    
+}
+
+.success-section{
+    display: flexbox;
+    justify-content: center;
+    margin-top: 12%;
+    text-align: center;
+}
+

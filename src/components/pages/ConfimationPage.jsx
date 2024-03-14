@@ -1,30 +1,21 @@
 import React from 'react';
+
 import Logo from '../Assets/mile1-assets/logo.svg';
-import styled from 'styled-components';
 
-const PageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #CE2829;
-    color: white;
-`;
+import "../css/ConfirmationPage.css"
 
-const LogoImage = styled.img`
-    margin:auto;
-`;
-
-const Title = styled.h1`
-    text-align: center;
-`;
-
-export default function ConfirmationPage() {
+const ConfirmationPage = () => {
     return (
-        <PageContainer>
-            <LogoImage src={Logo} alt="Logo" />
-            <Title>Tebrikler! Siparişiniz Alındı!</Title>
-        </PageContainer>
+        <div className='page-container'>
+        
+        <header className='header'>
+                <img className ="logo" src={Logo} alt="Logo" />
+                </header>
+            <section className="success-section">
+                <h1 className='success-h1'>TEBRİKLER!<br />SİPARİŞİNİZ ALINDI! </h1>
+            </section>
+        </div>
     );
 }
+
+export default ConfirmationPage;

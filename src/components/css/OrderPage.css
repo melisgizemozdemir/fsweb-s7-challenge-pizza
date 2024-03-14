@@ -1,20 +1,18 @@
 .header {
     border: 1px;
     background-color: #CE2829;
-    padding: 2rem;
+    padding: 4rem;
   }
   
   .logo{
 
     display: block;
     margin: 0 auto;
-
   }
 
   .form-container {
-    width: 50%; /* Formun genişliğini belirleyin */
-    margin: 0 auto; /* Sayfaya ortala */
-    padding: 3rem; /* Sağ ve sol kenarlarda boşluk bırak */
+    width: 40%; 
+    margin: 0 auto; 
     display: flex;
     flex-direction: column;
   }
@@ -23,8 +21,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
   }
-
 
 
 .adet-input {
@@ -53,13 +51,48 @@
        
 }
 
+.checkbox-container{
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+
+}
+
+.checkbox-row{
+  flex: 0 0 30%;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  
+
+}
+
 .adet-ozet-container{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
   }
 
+  .button{
+    display: inline-block;
+    padding: 0.3rem 1.5rem;
+  }
+
   .button:disabled {
-    background-color: #cccccc;}
+    background-color: #5F5F5F}
 
 
+@media (max-width: 1100px){
+
+  .form-container{
+    font-size:small;
+
+  }
+  .checkbox-container{
+    font-size:8px;
+  }
+
+  
+
+}

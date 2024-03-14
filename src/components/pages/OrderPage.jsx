@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Logo from '../Assets/mile1-assets/logo.svg';
 
+
 import "../css/OrderPage.css";
 
 
@@ -32,7 +33,9 @@ const OrderPage = () => {
         boyut: '',
         malzemeler: [],
         notlar: 'Siparişinize eklemek istediğiniz not var mı?',
-        adet: 1
+        adet: 1,
+        hamur:'',
+       
     });
 
     const [checkedMalzemeler, setCheckedMalzemeler] = useState(
@@ -42,11 +45,19 @@ const OrderPage = () => {
         }, {})
     );
 
+    
+    const [isFormValid, setIsValid] = useState(false);
+
     useEffect(() => {
         const malzemeSayisi = Object.values(checkedMalzemeler).filter(val => val).length;
-        const isFormValid = malzemeSayisi >= 4 && malzemeSayisi <= 10 && formData.isim.length >=3 && formData.boyut !== '';
-        document.getElementById('submitBtn').disabled = !isFormValid;
+        if(malzemeSayisi >= 4 && malzemeSayisi <= 10 && formData.isim.length >=3 && formData.boyut !== '' && formData.hamur !== '')
+        setIsValid(true);
+    else{
+        setIsValid(false);
+    }
     }, [checkedMalzemeler, formData]);
+
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -60,6 +71,11 @@ const OrderPage = () => {
                 ...prevState,
                 [value]: checked
             }));
+        } else if (name === 'hamur' || name === 'boyut') { // input alanı hamur veya boyut seçimi ise
+            setFormData(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
         } else {
             setFormData(prevState => ({
                 ...prevState,
@@ -67,14 +83,8 @@ const OrderPage = () => {
             }));
         }
     };
+    
 
-    const handleDropdownChange = (e) => {
-        const { value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            boyut: value
-        }));
-    };
 
     const handleAdetChange = (operation) => {
         if (operation === 'azalt' && formData.adet === 1) return;
@@ -84,10 +94,14 @@ const OrderPage = () => {
         }));
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+    if(!isFormValid) return;
+
         axios.post('https://reqres.in/api/pizza', formData )
+
     .then((response)=> {
         console.log('Response:', response.data);
         history.push('/siparis-onayi');
@@ -97,8 +111,9 @@ const OrderPage = () => {
     });
     };
     
+
     return (
-        <div>
+        <>
             <header className="header"><img className ="logo" src={Logo} /></header>
             <form className="form-container" onSubmit={handleSubmit}>
                 <h1>Position Absolute Pizza</h1>
@@ -108,29 +123,30 @@ const OrderPage = () => {
                 <div className="radio-dropdown-container">
                     <div className='radio'>
                         <label ><b>Boyut Seç<b/></b></label><br /><br/>
-                        <input type="radio" id="kucuk" name="boyut" value="kucuk" onChange={handleDropdownChange} required />
+                        <input type="radio" name="boyut" value="kucuk" onChange={handleChange} required />
                         <label>Küçük</label><br />
-                        <input type="radio" id="orta" name="boyut" value="orta" onChange={handleDropdownChange} />
+                        <input type="radio" name="boyut" value="orta" onChange={handleChange} />
                         <label>Orta</label><br />
-                        <input type="radio" id="buyuk" name="boyut" value="buyuk" onChange={handleDropdownChange} />
+                        <input type="radio" name="boyut" value="buyuk" onChange={handleChange} />
                         <label>Büyük</label><br /><br />
                     </div>
 
                     <div className='dropdown'>
                         <label><b>Hamur Seç</b></label><br /><br/>
-                        <select value={formData.selectedOption} onChange={handleDropdownChange}>
+                        <select name="hamur" value={formData.hamur} onChange={handleChange}>
+                            <option value="" disabled hidden>Hamur Kalınlığı Seçiniz</option>
                             <option value="ince">İnce</option>
                             <option value="kalin">Kalın</option>
                         </select><br /><br />
                     </div>
                 </div>
 
-                <label><b>Hamur Seç</b></label><br />
+                <label><b>Ek Malzemeler</b><br/>En az 4, en fazla 10 malzeme seçiniz. Adet: 5₺</label><br/>
                 <div className="checkbox-container">
                
                 {malzemeler.map((malzeme, index) => (
                   <div className="checkbox-row" key={index}>
-                    <label htmlFor={`malzeme${index + 1}`} check>
+                    <label htmlFor={`malzeme${index + 1}`}>
                       <input
                         id={`malzeme${index + 1}`}
                         data-cy={`malzeme-checkbox-${malzeme}`}
@@ -145,16 +161,19 @@ const OrderPage = () => {
                 ))}
               </div>
                 
-                <label><b>İsim Soyisim</b></label>
-                <div className="name-input">
-                    <input type="text" name="isim" value={formData.isim} onChange={handleChange} /><br /><br /> 
+                
+                    <label><b>İsim Soyisim</b></label>
+                    <div className="name-input">
+                    <input type="text" name="isim" value={formData.isim} onChange={handleChange} data-cy="ad-input"/><br /><br /> 
                 </div>
-
-                <label><b>Sipariş Notu</b><br />
-                    <div className="note-input">
-                        <textarea name="notlar" value={formData.notlar} rows={4} onChange={handleChange}></textarea><br /><br />
+                
+                
+                    <label><b>Sipariş Notu</b><br /></label>
+                    <div className="note-input"> 
+                    <textarea name="notlar" value={formData.notlar} rows={4} onChange={handleChange} 
+                    onClick = {() => setFormData(prevState => ({...prevState,notlar: ''}))}></textarea><br /><br />
                     </div>
-                </label>
+                
             
                 <hr/>
 
@@ -182,10 +201,10 @@ const OrderPage = () => {
                 
                     
                 </div>
-                <button id="submitBtn" className='button' type="submit" disabled>Sipariş Ver</button>
+                <button disabled= {!isFormValid} className='button' type="submit">Sipariş Ver</button>
                 
             </form>
-        </div>
+        </>
     );
 }
 
